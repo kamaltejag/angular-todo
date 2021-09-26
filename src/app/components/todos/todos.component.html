@@ -1,0 +1,30 @@
+<div *ngFor="let todo of todos" class="col-12 col-md-6 col-lg-4">
+    <div [ngClass]="{status_done: todo.completed}"
+        class="bg-white rounded-3 shadow-sm p-3 mb-3 d-block d-lg-flex align-items-center justify-content-between" >
+        <p class="m-0 p-0 todo" (click)="changeStatus(todo)">{{ todo.content }}</p>
+        <div class="">
+            <a href="#"[routerLink]="['/edit', todo.id]" routerLinkActive="router-link-active"  class="btn btn-transparent p-0">
+                <i class="fas fa-edit text-muted"></i>
+            </a>
+            <button class="btn btn-transparent p-0 ms-3" (click)="setDeleteId(todo.id)" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                <i class="fas fa-trash text-muted"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-body p-4 text-center">
+        <h3 class="mb-0 text-danger">Confirm Delete?</h3>
+        <p class="mb-0">This action is irreversible</p>
+      </div>
+      <div class="modal-footer flex-nowrap p-0">
+        <button type="button" (click)="deleteTodo()" class="btn btn-lg btn-danger text-white fs-6 text-decoration-none col-6 m-0 rounded-0 border-right" data-bs-dismiss="modal"><strong>Delete</strong></button>
+        <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">No thanks</button>
+      </div>
+    </div>
+  </div>
+</div>
